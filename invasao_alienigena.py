@@ -1,19 +1,21 @@
 import sys
 import pygame
-from configurações import cofiguracoes
+from configuracoes import Configuracoes
+from espaconave import Espaconave
 
 class InvasaoAlienigena:
     '''Classe geral para gerenciar ativos e comportamento do jogo'''
     def __init__(self):
         '''Inicializa o jogo e cria recurssos do jogo'''
         pygame.init()
-        self.configuracoes = cofiguracoes()
+        self.configuracoes = Configuracoes()
 
         self.relogio = pygame.time.Clock()
         self.tela = pygame.display.set_mode((self.configuracoes.largura_tela,
-                                             self.configuracoes.autura_dela,
+                                             self.configuracoes.altura_tela,
                                              ))
         pygame.display.set_caption("Invasão Agienigena!")
+        self.espaconave = Espaconave(self)
 
         #Define a dor do Fundo.
         self.bg_cor = (self.configuracoes.bg_cor)
@@ -27,6 +29,7 @@ class InvasaoAlienigena:
                     sys.exit()
             #Redesenha a tela durante casa passagem pelo loop.
             self.tela.fill(self.bg_cor)
+            self.espaconave.me_carregue()
 
             #Deixa a tela desenhada mais recente visivel.
             pygame.display.flip()
