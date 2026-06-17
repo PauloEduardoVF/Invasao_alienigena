@@ -6,7 +6,7 @@ class InvasaoAlienigena:
     def __init__(self):
         '''Inicializa o jogo e cria recurssos do jogo'''
         pygame.init()
-
+        self.relogio = pygame.time.Clock()
         self.tela = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Invasão Agienigena")
 
@@ -19,6 +19,7 @@ class InvasaoAlienigena:
                     sys.exit()
             #Deixa a tela desenhada mais recente visivel
             pygame.display.flip()
+            self.relogio.tick(60)
 
 if __name__ == '__main__':
     #cria uma instância do jogo e executa o jogo
