@@ -1,17 +1,22 @@
 import sys
 import pygame
+from configurações import cofiguracoes
 
 class InvasaoAlienigena:
     '''Classe geral para gerenciar ativos e comportamento do jogo'''
     def __init__(self):
         '''Inicializa o jogo e cria recurssos do jogo'''
         pygame.init()
+        self.configuracoes = cofiguracoes()
+
         self.relogio = pygame.time.Clock()
-        self.tela = pygame.display.set_mode((1200, 800))
+        self.tela = pygame.display.set_mode((self.configuracoes.largura_tela,
+                                             self.configuracoes.autura_dela,
+                                             ))
         pygame.display.set_caption("Invasão Agienigena!")
 
         #Define a dor do Fundo.
-        self.bg_cor = (230, 230, 230)
+        self.bg_cor = (self.configuracoes.bg_cor)
 
     def executar_jogo(self):
         '''Inicia o loop principal do jogo'''
