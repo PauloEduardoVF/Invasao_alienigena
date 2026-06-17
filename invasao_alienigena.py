@@ -23,17 +23,22 @@ class InvasaoAlienigena:
     def executar_jogo(self):
         '''Inicia o loop principal do jogo'''
         while True:
-            #Observa eventos de teclado e mouse.
-            for evento in pygame.event.get():
+            self._verificar_evento()
+            self._atualizar_eventos()
+            self.relogio.tick(60)
+
+    def _verificar_evento(self):
+        '''Responde as teclas pressionadas e a eventos de mouse'''
+        for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
                     sys.exit()
-            #Redesenha a tela durante casa passagem pelo loop.
+
+    def _atualizar_eventos(self):
             self.tela.fill(self.bg_cor)
             self.espaconave.me_carregue()
-
             #Deixa a tela desenhada mais recente visivel.
             pygame.display.flip()
-            self.relogio.tick(60)
+           
 
 if __name__ == '__main__':
     #cria uma instância do jogo e executa o jogo.
