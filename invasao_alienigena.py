@@ -8,21 +8,27 @@ class InvasaoAlienigena:
         pygame.init()
         self.relogio = pygame.time.Clock()
         self.tela = pygame.display.set_mode((1200, 800))
-        pygame.display.set_caption("Invasão Agienigena")
+        pygame.display.set_caption("Invasão Agienigena!")
+
+        #Define a dor do Fundo.
+        self.bg_cor = (230, 230, 230)
 
     def executar_jogo(self):
         '''Inicia o loop principal do jogo'''
         while True:
-            #Observa eventos de teclado e mouse
+            #Observa eventos de teclado e mouse.
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
                     sys.exit()
-            #Deixa a tela desenhada mais recente visivel
+            #Redesenha a tela durante casa passagem pelo loop.
+            self.tela.fill(self.bg_cor)
+
+            #Deixa a tela desenhada mais recente visivel.
             pygame.display.flip()
             self.relogio.tick(60)
 
 if __name__ == '__main__':
-    #cria uma instância do jogo e executa o jogo
+    #cria uma instância do jogo e executa o jogo.
     ai = InvasaoAlienigena()
     ai.executar_jogo()
 
