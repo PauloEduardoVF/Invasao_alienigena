@@ -15,6 +15,14 @@ class Espaconave:
         #Começa cada espaçonave nova no centro inferior da tela
         self.retangulo.midbottom = self.tela_react.midbottom
 
+        #Flag de movimento: começa com uma espacinave que não está se movento
+        self.mover_direita = False
+
+    def atualizar(self):
+        '''Atualiza a pasição da espacionave que não esta se movendo'''
+        if self.mover_direita:
+            self.retangulo.x += 1
+
     def me_carregue(self):
         '''Desenha uma espaçonave em sua localização atual'''
         self.tela.blit(self.imagem, self.retangulo)

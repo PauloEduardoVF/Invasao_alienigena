@@ -24,6 +24,7 @@ class InvasaoAlienigena:
         '''Inicia o loop principal do jogo'''
         while True:
             self._verificar_evento()
+            self.espaconave.atualizar()
             self._atualizar_tela()
             self.relogio.tick(60)
 
@@ -33,9 +34,11 @@ class InvasaoAlienigena:
                 if evento.type == pygame.QUIT:
                     sys.exit()
                 elif evento.type == pygame.KEYDOWN:
+                    if evento.key == pygame.K_RIGHT:
+                        self.espaconave.mover_direita = True
+                elif evento.type == pygame.KEYUP:
                      if evento.key == pygame.K_RIGHT:
-                          #Move a espaçonave para a direita
-                          self.espaconave.retangulo.x += 1
+                          self.espaconave.mover_direita = False       
 
     def _atualizar_tela(self):
             '''Atualiza as imagens na tela e muda para a nova tela'''
