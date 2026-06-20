@@ -17,11 +17,14 @@ class Espaconave:
 
         #Flag de movimento: começa com uma espacinave que não está se movento
         self.mover_direita = False
+        self.mover_esquerta = False
 
     def atualizar(self):
         '''Atualiza a pasição da espacionave que não esta se movendo'''
         if self.mover_direita:
             self.retangulo.x += 1
+        if self.mover_esquerta:
+            self.retangulo.x -= 1
 
     def me_carregue(self):
         '''Desenha uma espaçonave em sua localização atual'''

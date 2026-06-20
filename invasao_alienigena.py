@@ -36,9 +36,13 @@ class InvasaoAlienigena:
                 elif evento.type == pygame.KEYDOWN:
                     if evento.key == pygame.K_RIGHT:
                         self.espaconave.mover_direita = True
+                    if evento.key == pygame.K_LEFT:
+                        self.espaconave.mover_esquerta = True
                 elif evento.type == pygame.KEYUP:
-                     if evento.key == pygame.K_RIGHT:
-                          self.espaconave.mover_direita = False       
+                    if evento.key == pygame.K_RIGHT:
+                        self.espaconave.mover_direita = False
+                    if evento.key == pygame.K_LEFT:
+                        self.espaconave.mover_esquerta = False                               
 
     def _atualizar_tela(self):
             '''Atualiza as imagens na tela e muda para a nova tela'''
