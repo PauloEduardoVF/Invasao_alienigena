@@ -7,6 +7,7 @@ class Espaconave:
         '''Inicializa a espaconave e define sua posição inicial'''
         self.tela = ai_jogo.tela
         self.tela_react = ai_jogo.tela.get_rect()
+        self.configuracoes = ai_jogo.configuracoes
 
         #Sobre a imagem da espaçonave e obter seu rect = retângulo
         self.imagem = pygame.image.load('imagens/ship.bmp')
@@ -15,16 +16,23 @@ class Espaconave:
         #Começa cada espaçonave nova no centro inferior da tela
         self.retangulo.midbottom = self.tela_react.midbottom
 
-        #Flag de movimento: começa com uma espacinave que não está se movento
+        #armasena um floot para a posição horizontal exata da espaçonave
+        self.x = float(self.retangulo.x)
+
+        #Flag de movimento: começa com uma espaçonave que não está se movento
         self.mover_direita = False
-        self.mover_esquerta = False
+        self.mover_esquerda = False
 
     def atualizar(self):
-        '''Atualiza a pasição da espacionave que não esta se movendo'''
+        '''Atualiza a posição da espacionave que não esta se movendo'''
+        #atualiza o valor x da espaçonave, não o rect
         if self.mover_direita:
-            self.retangulo.x += 1
-        if self.mover_esquerta:
-            self.retangulo.x -= 1
+            self.x += self.configuracoes.nave_velocidade
+        if self.mover_esquerda:
+            self.x -= self.configuracoes.nave_velocidade
+
+        #Atualiza o objeto retangulo de self.x 
+        self.retangulo.x = self.x
 
     def me_carregue(self):
         '''Desenha uma espaçonave em sua localização atual'''
