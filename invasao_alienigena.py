@@ -44,6 +44,8 @@ class InvasaoAlienigena:
             self.espaconave.mover_direita = True
         elif evento.key == pygame.K_LEFT:
             self.espaconave.mover_esquerda = True
+        elif evento.key == pygame.K_q:
+            sys.exit()
              
     def verificar_eventos_KEYUP(self, evento):
         '''Responde as teclas soltas '''
