@@ -26,9 +26,9 @@ class Espaconave:
     def atualizar(self):
         '''Atualiza a posição da espacionave que não esta se movendo'''
         #atualiza o valor x da espaçonave, não o rect
-        if self.mover_direita:
+        if self.mover_direita and self.retangulo.right < self.tela_react.right:
             self.x += self.configuracoes.nave_velocidade
-        if self.mover_esquerda:
+        if self.mover_esquerda and self.retangulo.left > 0:
             self.x -= self.configuracoes.nave_velocidade
 
         #Atualiza o objeto retangulo de self.x 
