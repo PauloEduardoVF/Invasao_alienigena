@@ -25,15 +25,9 @@ class InvasaoAlienigena:
     def executar_jogo(self):
         '''Inicia o loop principal do jogo'''
         while True:
-            self._verificar_evento()
-            self.balas.update()
+            self._verificar_evento()            
             self.espaconave.atualizar()
-
-            #Descarta os projéteis que desaparencem
-            for bala in self.balas.copy():
-                if bala.rect.bottom <= 0:
-                    self.balas.remove(bala)
-        
+            self._atualizar_balas()
             self._atualizar_tela()
             self.relogio.tick(60)
 
@@ -70,7 +64,17 @@ class InvasaoAlienigena:
             if len(self.balas) < self.configuracoes.balas_permitidas:
                 nova_bala = Bala(self)
                 self.balas.add(nova_bala)
-             
+    
+    def _atualizar_balas(self):
+        """Atualiza a poisição dos projéteis e descarta os projéteis antigos"""
+        #Atualiza as posições dos projéteis
+        self.balas.update()
+        
+        #Descarta os projéteis que desaparencem
+        for bala in self.balas.copy():
+            if bala.rect.bottom <= 0:
+                self.balas.remove(bala)
+
     def _atualizar_tela(self):
             '''Atualiza as imagens na tela e muda para a nova tela'''
             self.tela.fill(self.bg_cor)
