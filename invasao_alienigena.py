@@ -2,6 +2,7 @@ import sys
 import pygame
 from configuracoes import Configuracoes
 from espaconave import Espaconave
+from bala import Bala
 
 class InvasaoAlienigena:
     '''Classe geral para gerenciar ativos e comportamento do jogo'''
@@ -16,6 +17,7 @@ class InvasaoAlienigena:
                                              ))
         pygame.display.set_caption("Invasão Agienigena!")
         self.espaconave = Espaconave(self)
+        self.balas = pygame.sprite.Group()
 
         #Define a dor do Fundo.
         self.bg_cor = (self.configuracoes.bg_cor)
@@ -24,6 +26,7 @@ class InvasaoAlienigena:
         '''Inicia o loop principal do jogo'''
         while True:
             self._verificar_evento()
+            self.balas.update()
             self.espaconave.atualizar()
             self._atualizar_tela()
             self.relogio.tick(60)
@@ -46,6 +49,8 @@ class InvasaoAlienigena:
             self.espaconave.mover_esquerda = True
         elif evento.key == pygame.K_q:
             sys.exit()
+        elif evento.key == pygame.K_SPACE:
+            self._disparar_balas()
              
     def verificar_eventos_KEYUP(self, evento):
         '''Responde as teclas soltas '''
@@ -53,10 +58,17 @@ class InvasaoAlienigena:
             self.espaconave.mover_direita = False
         elif evento.key == pygame.K_LEFT:
             self.espaconave.mover_esquerda = False 
+
+    def _disparar_balas(self):
+            """Cria um novo projétil e o adiciona ao grupo projéteis"""
+            nova_bala = Bala(self)
+            self.balas.add(nova_bala)
              
     def _atualizar_tela(self):
             '''Atualiza as imagens na tela e muda para a nova tela'''
             self.tela.fill(self.bg_cor)
+            for bala in self.balas.sprites():
+                bala.desenhar_bala()
             self.espaconave.me_carregue()
             #Deixa a tela desenhada mais recente visivel.
             pygame.display.flip()

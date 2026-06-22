@@ -2,7 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 
 class Bala(Sprite):
-    '''Classe para genrenciar os projéteis disparado da espaçonave'''
+    '''Classe para gerenciar os projéteis disparado da espaçonave'''
     def __init__(self, ai_jogo):
         super().__init__()
         '''Cria um objeto Bala na posição atual da espaçonave'''
@@ -18,8 +18,8 @@ class Bala(Sprite):
         #Armazena a posição do projétil como um float
         self.y = float(self.rect.y)
 
-    def atualizar(self):
-        '''Desloca o projétil verticalmanete'''
+    def update(self):
+        '''Desloca o projétil verticalmente'''
         #Atualiza a posição exata do projétil
         self.y -= self.configuracoes.bala_velocidade
         #Atualiza a posição do react
