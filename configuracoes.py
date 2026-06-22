@@ -14,3 +14,4 @@ class Configuracoes:
         self.bala_largura = 3
         self.bala_altura = 15
         self.bala_cor = (60, 60, 60)
+        self.balas_permitidas = 3

@@ -15,7 +15,7 @@ class InvasaoAlienigena:
         self.tela = pygame.display.set_mode((self.configuracoes.largura_tela,
                                              self.configuracoes.altura_tela,
                                              ))
-        pygame.display.set_caption("Invasão Agienigena!")
+        pygame.display.set_caption("Invasão Alienigena!")
         self.espaconave = Espaconave(self)
         self.balas = pygame.sprite.Group()
 
@@ -28,6 +28,12 @@ class InvasaoAlienigena:
             self._verificar_evento()
             self.balas.update()
             self.espaconave.atualizar()
+
+            #Descarta os projéteis que desaparencem
+            for bala in self.balas.copy():
+                if bala.rect.bottom <= 0:
+                    self.balas.remove(bala)
+        
             self._atualizar_tela()
             self.relogio.tick(60)
 
@@ -61,8 +67,9 @@ class InvasaoAlienigena:
 
     def _disparar_balas(self):
             """Cria um novo projétil e o adiciona ao grupo projéteis"""
-            nova_bala = Bala(self)
-            self.balas.add(nova_bala)
+            if len(self.balas) < self.configuracoes.balas_permitidas:
+                nova_bala = Bala(self)
+                self.balas.add(nova_bala)
              
     def _atualizar_tela(self):
             '''Atualiza as imagens na tela e muda para a nova tela'''
