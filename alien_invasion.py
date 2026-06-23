@@ -91,19 +91,32 @@ class AlienInvasion:
 
     def _create_fleet(self):
         """Cria a frota de alienígenas"""
-        #Cria um alienígena e cintinua adicinando alienígenas
-        #ate que não aja mais ecpaços
-        #O Distanciamento entre alienígenas é a largura de um a                                                                                                                                                                                                                         lienígena
+        #Cria um alienígena e continua adicinando alienígenas
+        #ate que não aja mais espaços
+        #O Distanciamento entre alienígenas é a largura de um alienígena                                                                                                                                                                                                                         lienígena
         alien = Alien(self)
-        alien_width = alien.rect.width
+        alien_width, alien_height = alien.rect.size
 
-        current_x = alien_width
-        while current_x < (self.settings.screen_width - 2 * alien_width):
-            new_alien =Alien(self)
-            new_alien.x = current_x
-            new_alien.rect.x = current_x
-            self.aliens.add(new_alien)
-            current_x += 2 * alien_width
+        current_x, current_y = alien_width, alien_height
+        # Loop para as fileiras (Eixo Y)
+        while current_y < (self.settings.screen_height - 3 * alien_height):
+            
+            # Loop para preencher uma fileira (Eixo X)
+            while current_x < (self.settings.screen_width - 2 * alien_width):
+                self._create_alien(current_x, current_y)
+                current_x += 2 * alien_width
+            
+            # Estas linhas acionam o próximo nível e devem estar recuadas:
+            current_x = alien_width
+            current_y += 2 * alien_height
+        
+    def _create_alien(self, x_position, y_position):
+        """Cria um alienígena e o posiciona na fileira"""
+        new_alien = Alien(self)
+        new_alien.x = x_position
+        new_alien.rect.x = x_position
+        new_alien.rect.y = y_position
+        self.aliens.add(new_alien)
 
 if __name__ == '__main__':
     # Cria uma instância do jogo e executa o jogo.
