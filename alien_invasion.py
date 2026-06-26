@@ -31,6 +31,7 @@ class AlienInvasion:
         while True:
             self._check_events()            
             self.ship.update()
+            self._update_aliens()
             self._update_bullets()
             self._update_screen()
             self.clock.tick(60)
@@ -117,6 +118,10 @@ class AlienInvasion:
         new_alien.rect.x = x_position
         new_alien.rect.y = y_position
         self.aliens.add(new_alien)
+
+    def _update_aliens(self):
+        """Atualiza as posicões de todos os alienígenas na frota"""
+        self.aliens.update()
 
 if __name__ == '__main__':
     # Cria uma instância do jogo e executa o jogo.
