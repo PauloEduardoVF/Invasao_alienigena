@@ -123,6 +123,7 @@ class AlienInvasion:
         """Atualiza as posicões de todos os alienígenas na frota"""
         self.aliens.update()
 
+
 if __name__ == '__main__':
     # Cria uma instância do jogo e executa o jogo.
     ai = AlienInvasion()

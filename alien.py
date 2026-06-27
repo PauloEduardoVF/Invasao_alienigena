@@ -24,3 +24,14 @@ class Alien(Sprite):
         """Move o alienígena para a direita"""
         self.x += self.settings.alien_speed
         self.rect.x = self.x
+
+    def check_edges(self):
+        """Retoena True se o alienígena etiver na borda da tela"""
+        screen_rect = self.screen.get_rect()
+        return (self.rect.right >= screen_rect.right) or (self.rect.left <= 0)
+    
+    def update(self):
+        """Desloca o alienígena para a direita ou para a esquerda"""
+        self.x += self.settings.alien_speed * self.settings.fleet_direction
+        self.rect.x = self.x
+        
