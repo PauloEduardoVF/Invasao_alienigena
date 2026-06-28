@@ -120,8 +120,22 @@ class AlienInvasion:
         self.aliens.add(new_alien)
 
     def _update_aliens(self):
-        """Atualiza as posicões de todos os alienígenas na frota"""
+        """Verifica se a frota está na borda e, em seguida, atualisa as posições"""
+        self._check_fleet_edges()
         self.aliens.update()
+
+    def _check_fleet_edges(self):
+        """Respone apropriadamente se algum alienígena alcançou uma borda"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._check_fleet_direction()
+                break
+
+    def _check_fleet_direction(self):
+        """Faz toda a frota descer e mudar a direção"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
 
 
 if __name__ == '__main__':
