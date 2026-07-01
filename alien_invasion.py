@@ -72,12 +72,15 @@ class AlienInvasion:
     
     def _update_bullets(self):
         """Atualiza a posição dos projéteis e descarta os antigos"""
-        self.bullets.update()
-        
+        self.bullets.update()      
         # Descarta os projéteis que desaparecem
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+        #Virifica se algum projétil atingiu um alienígena
+        #se sim, descarta o projétil e o alienígena
+        collisions = pygame.sprite.groupcollide(self.bullets,
+                                                self.aliens, True, True,)
 
     def _update_screen(self):
         '''Atualiza as imagens na tela e muda para a nova tela'''
