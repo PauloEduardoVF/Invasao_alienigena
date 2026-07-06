@@ -133,6 +133,10 @@ class AlienInvasion:
         """Verifica se a frota está na borda e, em seguida, atualisa as posições"""
         self._check_fleet_edges()
         self.aliens.update()
+        
+        #Detecta colisões entre alienígenas e espaçonaves
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Ship hit!!!")
 
     def _check_fleet_edges(self):
         """Respone apropriadamente se algum alienígena alcançou uma borda"""
