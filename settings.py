@@ -10,6 +10,7 @@ class Settings:
 
         # Configuração da velocidade da nave
         self.ship_speed = 2.5
+        self.ship_limit = 3
 
         # Configurações do projétil
         self.bullet_speed = 3.0
@@ -21,5 +22,7 @@ class Settings:
         #Configuração do Alienígena
         self.alien_speed = 1.0
         self.fleet_drop_speed = 100
+
         #fleet_direction de 1 representa a direita: -1 representa a esquerda
         self.fleet_direction = 1
+
