@@ -34,13 +34,19 @@ class AlienInvasion:
         # Define a cor do Fundo.
         self.bg_color = (self.settings.bg_color)
 
+        #Inicializa Invasão Alienígena em um estado ativo
+        self.game_active = True
+
     def run_game(self):
         '''Inicia o loop principal do jogo'''
         while True:
-            self._check_events()            
-            self.ship.update()
-            self._update_aliens()
-            self._update_bullets()
+            self._check_events()
+
+            if self.game_active:           
+                self.ship.update()
+                self._update_aliens()
+                self._update_bullets()
+                
             self._update_screen()
             self.clock.tick(60)
 
@@ -164,19 +170,22 @@ class AlienInvasion:
 
     def _ship_hit(self):
         '''Responde à espaconave sendo abatida por um alienígena'''
-        #Decrementa ship-hit
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0: 
+            #Decrementa ship-hit
+            self.stats.ships_left -= 1
 
-        #Descarta quaisquer projéteis e alienígenas restantes
-        self.bullets.empty()
-        self.aliens.empty()
+            #Descarta quaisquer projéteis e alienígenas restantes
+            self.bullets.empty()
+            self.aliens.empty()
 
-        #Cria uma fronta nova e centraliza a espaçonave
-        self._create_fleet()
-        self.ship.center_ship()
+            #Cria uma fronta nova e centraliza a espaçonave
+            self._create_fleet()
+            self.ship.center_ship()
 
-        #Pausa
-        sleep(1.5)
+            #Pausa
+            sleep(1.5)
+        else:
+            self.game_active = False
 
     def _check_aliens_bottom(self):
         '''Verifica se algum alienígena chegou à parte inferior da tela'''
