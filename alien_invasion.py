@@ -146,6 +146,9 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
+        #Procura por alienígenas se chocando aparte inferior da tela
+        self._check_aliens_bottom()
+
     def _check_fleet_edges(self):
         """Respone apropriadamente se algum alienígena alcançou uma borda"""
         for alien in self.aliens.sprites():
@@ -174,6 +177,14 @@ class AlienInvasion:
 
         #Pausa
         sleep(1.5)
+
+    def _check_aliens_bottom(self):
+        '''Verifica se algum alienígena chegou à parte inferior da tela'''
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= self.settings.screen_height:
+                #Trata isso como se fosse a espaçonave tivessee sido abatida
+                self._ship_hit()
+                break
 
 if __name__ == '__main__':
     # Cria uma instância do jogo e executa o jogo.
