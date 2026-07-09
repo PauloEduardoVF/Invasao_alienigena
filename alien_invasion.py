@@ -35,7 +35,7 @@ class AlienInvasion:
         self.bg_color = (self.settings.bg_color)
 
         #Inicializa Invasão Alienígena em um estado ativo
-        self.game_active = True
+        self.game_active = False
 
     def run_game(self):
         '''Inicia o loop principal do jogo'''
