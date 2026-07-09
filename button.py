@@ -6,7 +6,7 @@ class Button:
     def __init__(self, ai_game, msg):
         '''Inicializa os atributos do botão'''
         self.screen = ai_game.screen
-        self.creen_rect = self.screen.get_rect()
+        self.screen_rect = self.screen.get_rect()
 
         #Define as dimensões e propriedades do batão
         self.width, self.heigth = 200, 50
@@ -31,4 +31,4 @@ class Button:
     def draw_button(self):
         '''Desenha o botão em branco e depois desenha a mensagem'''
         self.screen.fill(self.button_color, self.rect)
-        self.screen.bilt(self.msg_image, self.msg_image_rect)
+        self.screen.blit(self.msg_image, self.msg_image_rect)
