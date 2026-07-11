@@ -77,6 +77,8 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_p:
+            self._star_game()
              
     def _check_keyup_events(self, event):
         '''Responde às teclas soltas'''
@@ -89,7 +91,11 @@ class AlienInvasion:
         '''Inicia um jogo novo quando o jogador clica em play'''
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.game_active:
-            #Redefine as estatísticas do jogo
+            self._star_game()
+
+    def _star_game(self):
+        #Redefine as estatísticas do jogo
+        if not self.game_active:
             self.stats.reset_stats()
             self.game_active = True 
 
