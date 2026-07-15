@@ -79,6 +79,9 @@ class AlienInvasion:
             self._fire_bullet()
         elif event.key == pygame.K_p:
             self._star_game()
+        elif event.key == pygame.K_2:
+            #Multiplica a velocidade do alien em 2x
+            self.settings.alien_speed += 2.0
              
     def _check_keyup_events(self, event):
         '''Responde às teclas soltas'''
