@@ -91,6 +91,8 @@ class AlienInvasion:
         '''Inicia um jogo novo quando o jogador clica em play'''
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.game_active:
+            #Redefine a s configurações do jogo
+            self.settings.initialize_dynsmic_settings()
             self._star_game()
 
     def _star_game(self):
@@ -134,6 +136,7 @@ class AlienInvasion:
             #Destrói os projeteis existentes e cria uma frota nova
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _update_screen(self):
         '''Atualiza as imagens na tela e muda para a nova tela'''
