@@ -19,7 +19,8 @@ class Scoreboard:
 
     def prep_score(self):
         '''Tranoforma a pontuação em uma imagem rederizada'''
-        score_str = str(self.stats.score)
+        rounded_score = round(self.stats.score, -1)
+        score_str = f"{rounded_score:,}"
         self.score_image = self.fon.render(score_str, True, self.text_color,
                                            self.settings.bg_color)
         #Exibe a pontuação no canto superior direito da tela

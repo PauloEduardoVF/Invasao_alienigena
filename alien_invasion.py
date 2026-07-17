@@ -99,6 +99,7 @@ class AlienInvasion:
             #Redefine a s configurações do jogo
             self.settings.initialize_dynsmic_settings()
             self._star_game()
+            self.sb.prep_score()
 
     def _star_game(self):
         #Redefine as estatísticas do jogo
@@ -136,7 +137,12 @@ class AlienInvasion:
         """Responde à colisões alienígenas"""
         #Remove todos os projéteis e os alienígenas que tenham colidido
         collisions = pygame.sprite.groupcollide(self.bullets,
-                                                self.aliens, False, True,)
+                                                self.aliens, True, True,)
+        if collisions:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+            self.sb.prep_score()
+
         if not self.aliens:
             #Destrói os projeteis existentes e cria uma frota nova
             self.bullets.empty()
