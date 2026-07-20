@@ -6,6 +6,7 @@ class GameStats:
         self.reset_stats()
         #A pontuação máxima nunca deve ser redefinida
         self.high_score = 0
+        self.level = 1
 
     def reset_stats(self):
         '''Inicializa as estatísticas que podem mudar durante o jogo'''

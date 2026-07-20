@@ -100,6 +100,7 @@ class AlienInvasion:
             self.settings.initialize_dynsmic_settings()
             self._star_game()
             self.sb.prep_score()
+            self.sb.prep_level()
 
     def _star_game(self):
         #Redefine as estatísticas do jogo
@@ -149,6 +150,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+            #Aumenta o nível
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _update_screen(self):
         '''Atualiza as imagens na tela e muda para a nova tela'''
