@@ -1,5 +1,7 @@
 import sys
+import json
 from time import sleep
+from pathlib import Path
 
 import pygame
 
@@ -60,7 +62,7 @@ class AlienInvasion:
         '''Responde às teclas pressionadas e a eventos de mouse'''
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    sys.exit()
+                    self._close_game()
                 elif event.type == pygame.KEYDOWN:
                     self._check_keydown_events(event)
                 elif event.type == pygame.KEYUP:
@@ -76,7 +78,7 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
-            sys.exit()
+            self._close_game()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
         elif event.key == pygame.K_p:
@@ -256,6 +258,14 @@ class AlienInvasion:
                 #Trata isso como se fosse a espaçonave tivessee sido abatida
                 self._ship_hit()
                 break
+    def _close_game(self):
+        """Salva a pontuação máxima no formato JSON e fecha o jogo."""
+        path = Path('high_score.json')
+        # Converte o número do recorde para JSON e escreve no arquivo
+        contents = json.dumps(self.stats.high_score)
+        path.write_text(contents)
+        
+        sys.exit()
 
 if __name__ == '__main__':
     # Cria uma instância do jogo e executa o jogo.
