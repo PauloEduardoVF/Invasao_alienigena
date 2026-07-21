@@ -99,7 +99,8 @@ class AlienInvasion:
             #Redefine a s configurações do jogo
             self.settings.initialize_dynsmic_settings()
             self._star_game()
-            self.sb.prep_score()
+            self.sb.prep_ships()
+            self.sb.prep_score()            
             self.sb.prep_level()
 
     def _star_game(self):
@@ -230,8 +231,9 @@ class AlienInvasion:
     def _ship_hit(self):
         '''Responde à espaconave sendo abatida por um alienígena'''
         if self.stats.ships_left > 0: 
-            #Decrementa ship-hit
+            #Decrementa ship-hit e atualiza scoreboard
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             #Descarta quaisquer projéteis e alienígenas restantes
             self.bullets.empty()
