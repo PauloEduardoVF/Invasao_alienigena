@@ -17,11 +17,7 @@ class Scoreboard:
         self.text_color = (30, 30, 30)
         self.fon = pygame.font.SysFont(None, 48)
 
-        #Preara a imagem inicial da pontuação
-        self.prep_score()
-        self.prep_high_score()
-        self.prep_level()
-        self.prep_ships()
+        self.prep_images()
 
     def prep_score(self):
         '''Tranoforma a pontuação em uma imagem rederizada'''
@@ -80,4 +76,10 @@ class Scoreboard:
             ship.rect.y = 10
             self.ships.add(ship)
 
+    def prep_images(self):
+        #Preara a imagem inicial da pontuação
+        self.prep_score()
+        self.prep_high_score()
+        self.prep_level()
+        self.prep_ships()
 

@@ -101,9 +101,7 @@ class AlienInvasion:
             #Redefine a s configurações do jogo
             self.settings.initialize_dynsmic_settings()
             self._star_game()
-            self.sb.prep_ships()
-            self.sb.prep_score()            
-            self.sb.prep_level()
+            self.sb.prep_images()
 
     def _star_game(self):
         #Redefine as estatísticas do jogo
@@ -149,14 +147,7 @@ class AlienInvasion:
             self.sb.check_high_score()
 
         if not self.aliens:
-            #Destrói os projeteis existentes e cria uma frota nova
-            self.bullets.empty()
-            self._create_fleet()
-            self.settings.increase_speed()
-
-            #Aumenta o nível
-            self.stats.level += 1
-            self.sb.prep_level()
+            self.star_new_level()
 
     def _update_screen(self):
         '''Atualiza as imagens na tela e muda para a nova tela'''
@@ -266,6 +257,16 @@ class AlienInvasion:
         path.write_text(contents)
         
         sys.exit()
+
+    def star_new_level(self):
+        #Destrói os projeteis existentes e cria uma frota nova
+        self.bullets.empty()
+        self._create_fleet()
+        self.settings.increase_speed()
+        
+        #Aumenta o nível
+        self.stats.level += 1
+        self.sb.prep_level()
 
 if __name__ == '__main__':
     # Cria uma instância do jogo e executa o jogo.
